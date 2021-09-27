@@ -1,8 +1,11 @@
 import 'package:covid19_news/config/colors.dart';
 import 'package:covid19_news/config/styles.dart';
 import 'package:covid19_news/data/data.dart';
-import 'package:covid19_news/urils/dropdown.dart';
+import 'package:covid19_news/utils/dropdown.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 String _country = 'USA';
 
@@ -14,21 +17,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     return CustomScrollView(
       physics: ClampingScrollPhysics(),
       slivers: <Widget>[
-        _buildHeader(screenHeight),
+        _buildHeader(screenHeight,context),
         _buildPreventionTips(screenHeight),
-        // _buildYourOwnTest(screenHeight),
+        _buildYourOwnTest(screenHeight),
       ],
     );
   }
 }
 
-SliverToBoxAdapter _buildHeader(double screenHeight) {
+SliverToBoxAdapter _buildHeader(double screenHeight, context) {
+
   return SliverToBoxAdapter(
     child: Container(
       padding: const EdgeInsets.all(20.0),
@@ -45,19 +51,14 @@ SliverToBoxAdapter _buildHeader(double screenHeight) {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(
-                'COVID-19',
+               Text(
+                'douda',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-              CountryDropdown(
-                countries: ['CN', 'FR', 'TN', 'IT', 'UK', 'USA'],
-                country: _country,
-                onChanged: (val) => {},
-              ),
+              ).tr(),
             ],
           ),
           SizedBox(height: screenHeight * 0.03),
@@ -74,22 +75,28 @@ SliverToBoxAdapter _buildHeader(double screenHeight) {
               ),
               SizedBox(height: screenHeight * 0.01),
               Text(
-                'If you feel sick with any COVID-19 symptoms, please call or text us immediately for help',
+                'If you feel sick with any COVID-19 symptoms, please ask immediately for help',
                 style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 15.0,
                 ),
               ),
-              SizedBox(height: screenHeight * 0.03),
+              SizedBox(height: screenHeight * 0.01),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
+                  SizedBox(),
                   FlatButton.icon(
                     padding: const EdgeInsets.symmetric(
                       vertical: 10.0,
                       horizontal: 20.0,
                     ),
-                    onPressed: () {},
+                    onPressed: (){
+                       print("click me");
+                      const tel ='tel:190';
+                       //launch(tel);
+                       context.locale = Locale('ar');
+                       },
                     color: Colors.red,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
@@ -99,29 +106,9 @@ SliverToBoxAdapter _buildHeader(double screenHeight) {
                       color: Colors.white,
                     ),
                     label: Text(
-                      'Call Now',
+                      'call',
                       style: Styles.buttonTextStyle,
-                    ),
-                    textColor: Colors.white,
-                  ),
-                  FlatButton.icon(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10.0,
-                      horizontal: 20.0,
-                    ),
-                    onPressed: () {},
-                    color: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    icon: const Icon(
-                      Icons.chat_bubble,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'Send SMS',
-                      style: Styles.buttonTextStyle,
-                    ),
+                    ).tr(),
                     textColor: Colors.white,
                   ),
                 ],
@@ -176,3 +163,58 @@ SliverToBoxAdapter _buildPreventionTips(double screenHeight) {
     ),
   );
 }
+
+  SliverToBoxAdapter _buildYourOwnTest(double screenHeight) {
+    return SliverToBoxAdapter(
+      child: GestureDetector(
+        onTap: (){
+          print("Container clicked");
+          const url ='https://evax.tn/';
+          launch(url);
+        },
+        child: Container(
+          margin: const EdgeInsets.symmetric(
+            vertical: 10.0,
+            horizontal: 20.0,
+          ),
+          padding: const EdgeInsets.all(10.0),
+          height: screenHeight * 0.15,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFFEEEEEE), Colors.grey],
+            ),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Image.asset('assets/images/own_test.png'),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Let’s Go Get Our Vaccine!',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.01),
+                  Text(
+                    'protect yourself \nand your loved ones. ',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15.0,
+                    ),
+                    maxLines: 2,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }

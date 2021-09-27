@@ -5,21 +5,25 @@ import 'package:covid19_news/config/colors.dart';
 import 'package:covid19_news/config/styles.dart';
 import 'package:covid19_news/data/data.dart';
 import 'package:covid19_news/nonet.dart';
-import 'package:covid19_news/urils/covidchart.dart';
-import 'package:covid19_news/urils/statsgrid.dart';
+import 'package:covid19_news/utils/covidchart.dart';
+import 'package:covid19_news/utils/statsgrid.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+
 class StatsPage extends StatefulWidget {
+
+ 
   StatsPage({Key? key}) : super(key: key);
 
   @override
   _StatsPageState createState() => _StatsPageState();
 }
-
-Future<dynamic> getdata() async {
-  const url =
-      "https://api.covid19api.com/country/tunisia?from=2021-07-23T00:00:00Z&to=2021-07-24T00:00:00Z";
+String? text;
+int? locIndex=0;
+int? dateIndex=0;
+Future<dynamic>? myFuture; 
+Future<dynamic> getdata(url) async {
   try {
     final res = await http.get(Uri.parse(url)).timeout(
       Duration(seconds: 7),
@@ -42,19 +46,52 @@ Future<dynamic> getdata() async {
 }
 
 class _StatsPageState extends State<StatsPage> {
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+     text="My Country";
+     locIndex=0;
+     dateIndex=0;
+    myFuture = getdata("https://corona.lmao.ninja/v2/countries/tunisia");
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: colorPrimary,
+
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
           children: [
-            _buildHeader(),
-            _buildRegionTabBar(),
-            _buildStatsTabBar(),
+            Container(
+              decoration: BoxDecoration(
+              color: colorPrimary,
+              borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(40.0),
+              bottomRight: Radius.circular(40.0),
+              ),
+              ),
+              child: Column(
+                children: [
+                  _buildHeader(),
+                  _buildRegionTabBar(context),
+                  _buildStatsTabBar(),
+                ],
+              ),
+            ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),           
+               Center(
+              child: Text(
+                text.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w600,
+            ),
+               ),
+      ),
             FutureBuilder(
-                future: getdata(),
+                future: myFuture,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Container(
@@ -76,24 +113,43 @@ class _StatsPageState extends State<StatsPage> {
                       return Container();
                     } else {
                       var donnee = jsonDecode(snapshot.data.toString());
-                      return Container(
+                      if (dateIndex==0)
+                     { return Container(
+                        height: MediaQuery.of(context).size.height*0.5,
+                        padding: EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 10.0),
+                        color: white,
                         child: StatsGrid(
-                          tcase: donnee[1]["Confirmed"].toString(),
-                          deaths: donnee[1]["Deaths"].toString(),
-                          recovred: donnee[1]["Recovered"].toString(),
+                          tcase: donnee["cases"].toString(),
+                          deaths: donnee["deaths"].toString(),
+                          recovered: donnee["recovered"].toString(),
+                          critical: donnee["critical"].toString(),
+
+                        ),
+                      );}
+                      else{
+                        print("hii"+dateIndex.toString());
+                        return Container(
+                        height: MediaQuery.of(context).size.height*0.5,
+                        padding: EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 10.0),
+                        color: white,
+                        child: StatsGrid(
+                          tcase: donnee["todayCases"].toString(),
+                          deaths: donnee["todayDeaths"].toString(),
+                          recovered: donnee["todayRecovered"].toString(),
+                          critical: donnee["critical"].toString(),
+
                         ),
                       );
+                      }
                     }
                   }
-                }),
+             }),
           ],
         ),
       ),
     );
   }
-}
-
-Widget _buildHeader() {
+ Widget _buildHeader() {
   return Container(
     padding: const EdgeInsets.all(20.0),
     child: Text(
@@ -107,7 +163,7 @@ Widget _buildHeader() {
   );
 }
 
-Widget _buildRegionTabBar() {
+Widget _buildRegionTabBar(context) {
   return Container(
     child: DefaultTabController(
       length: 2,
@@ -131,7 +187,26 @@ Widget _buildRegionTabBar() {
             Text('My Country'),
             Text('Global'),
           ],
-          onTap: (index) {},
+          onTap: (index) {
+            print(index.toString());
+            if (index==1)
+            {
+              setState(() {
+                myFuture = getdata("https://corona.lmao.ninja/v2/all");
+                locIndex=1;
+                text="Global";
+              });
+
+            }else if (index==0) 
+            {
+              setState(() {
+                myFuture = getdata("https://corona.lmao.ninja/v2/countries/tunisia");
+                locIndex=0;
+                 text="My Country";
+              });
+            }
+
+          },
         ),
       ),
     ),
@@ -142,7 +217,7 @@ Widget _buildStatsTabBar() {
   return Container(
     padding: const EdgeInsets.all(20.0),
     child: DefaultTabController(
-      length: 3,
+      length: 2,
       child: TabBar(
         indicatorColor: Colors.transparent,
         labelStyle: Styles.tabTextStyle,
@@ -151,10 +226,43 @@ Widget _buildStatsTabBar() {
         tabs: <Widget>[
           Text('Total'),
           Text('Today'),
-          Text('Yesterday'),
         ],
-        onTap: (index) {},
+        onTap: (index) {
+          if (index==1 && locIndex==0)
+            {
+              setState(() {
+                dateIndex=1;
+                myFuture = getdata("https://corona.lmao.ninja/v2/countries/tunisia");
+              });
+
+            }else if (index==1 && locIndex==1)
+            {
+              setState(() {
+                dateIndex=1;
+                myFuture = getdata("https://corona.lmao.ninja/v2/all");
+              });
+
+            }
+            else if (index==0 && locIndex==0) 
+            {
+              setState(() {
+                dateIndex=0;
+                myFuture = getdata("https://corona.lmao.ninja/v2/countries/tunisia");
+              });
+            }
+            else if (index==0 && locIndex==1) 
+            {
+              setState(() {
+                dateIndex=0;
+                myFuture = getdata("https://corona.lmao.ninja/v2/all");
+              });
+            }
+
+        },
       ),
     ),
   );
 }
+
+}
+
