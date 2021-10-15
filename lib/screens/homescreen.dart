@@ -8,6 +8,9 @@ import 'package:covid19_news/utils/NavigationDrawerWidget.dart';
 import 'package:covid19_news/utils/bottommenu.dart';
 import 'package:flutter/material.dart';
 
+import '../dash/settings.dart';
+import './helpful_info.dart';
+
 class Homescreen extends StatefulWidget {
   Homescreen({Key? key}) : super(key: key);
 
@@ -22,7 +25,7 @@ class _HomescreenState extends State<Homescreen> {
     StatsPage(),
     SymptomsPage(),
     NewsPage(),
-    TestPage(),
+    SettingsPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -31,12 +34,11 @@ class _HomescreenState extends State<Homescreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: colorPrimary,
-        leading: Builder(builder: (context) => 
-            IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () => Scaffold.of(context).openDrawer())),
+        automaticallyImplyLeading: false,
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications_outlined))
+          IconButton( icon: Icon(Icons.privacy_tip_outlined),onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Helpful_info()));
+          },)
         ],
       ),
       body: pages[indexpage],

@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:covid19_news/translations/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+
 final prevention = [
-  {'assets/images/distance.png': 'Avoid close\ncontact'},
-  {'assets/images/wash_hands.png': 'Clean your\nhands often'},
-  {'assets/images/mask.png': 'Wear a\nfacemask'},
+  {'assets/images/distance.png':LocaleKeys.avoid_close.tr() +'\n'+LocaleKeys.contact.tr()},
+  {'assets/images/wash_hands.png': LocaleKeys.clean_your_hands.tr()+'\n'+LocaleKeys.often.tr()},
+  {'assets/images/mask.png': LocaleKeys.wear_a.tr()+'\n'+LocaleKeys.facemask.tr()},
 ];
 
-final covidUSADailyNewCases = [12.17, 11.15, 10.02, 11.21, 13.83, 14.16, 14.30];

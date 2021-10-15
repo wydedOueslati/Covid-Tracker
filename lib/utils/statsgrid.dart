@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class StatsGrid extends StatelessWidget {
   String? tcase;
@@ -17,22 +18,34 @@ class StatsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+                decoration: BoxDecoration(
+                 color: Colors.white,
+                 borderRadius: BorderRadius.circular(20),
+                 boxShadow: [
+                   BoxShadow(
+                    color: Colors.grey,
+                    blurRadius:6,
+                    offset: Offset(4,4), // Shadow position
+                   ),
+                 ],
+               ),
+              width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.40,
       child: Column(
         children: <Widget>[
           Flexible(
             child: Row(
               children: <Widget>[
-                _buildStatCard('Cases', tcase!, Colors.orange),
-                _buildStatCard('Deaths', deaths!, Colors.red),
+                _buildStatCard('Cases', NumberFormat.compact().format(double.parse(tcase!)), Colors.orange),
+                _buildStatCard('Deaths',  NumberFormat.compact().format(double.parse(deaths!)), Colors.red),
               ],
             ),
           ),
           Flexible(
             child: Row(
               children: <Widget>[
-                _buildStatCard('Recovered', recovered!, Colors.green),
-                _buildStatCard('Critical', critical!, Colors.purple),
+                _buildStatCard('Recovered', NumberFormat.compact().format(double.parse(recovered!)), Colors.green),
+                _buildStatCard('Critical',  NumberFormat.compact().format(double.parse(critical!)), Colors.purple),
               ],
             ),
           ),

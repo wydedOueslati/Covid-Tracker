@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:covid19_news/blocs/newsbloc/news_bloc.dart';
 import 'package:covid19_news/blocs/newsbloc/news_states.dart';
 import 'package:covid19_news/models/article_model.dart';
+import 'package:covid19_news/screens/nonet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -81,7 +82,6 @@ class _NewsuiScreenState extends State<NewsuiScreen> {
                                       offset: Offset(0, 2),
                                       spreadRadius: 1)
                                 ]),
-                            height: height * 0.15,
                             margin: EdgeInsets.only(
                                 bottom: height * 0.01,
                                 top: height * 0.01,
@@ -149,7 +149,7 @@ class _NewsuiScreenState extends State<NewsuiScreen> {
                 } else if (state is NewsErrorState) {
                   String error = state.errorMessage;
 
-                  return Center(child: Text(error));
+                  return Center(child: NoNetPage());
                 } else {
                   return Center(
                       child: CircularProgressIndicator(

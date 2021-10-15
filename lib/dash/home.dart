@@ -1,13 +1,13 @@
 import 'package:covid19_news/config/colors.dart';
 import 'package:covid19_news/config/styles.dart';
 import 'package:covid19_news/data/data.dart';
+import 'package:covid19_news/translations/locale_keys.g.dart';
 import 'package:covid19_news/utils/dropdown.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-String _country = 'USA';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -30,14 +30,15 @@ class _HomePageState extends State<HomePage> {
         _buildYourOwnTest(screenHeight),
       ],
     );
+    
   }
 }
 
-SliverToBoxAdapter _buildHeader(double screenHeight, context) {
+SliverToBoxAdapter _buildHeader(double screenHeight,BuildContext context) {
 
   return SliverToBoxAdapter(
     child: Container(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: colorPrimary,
         borderRadius: BorderRadius.only(
@@ -52,7 +53,7 @@ SliverToBoxAdapter _buildHeader(double screenHeight, context) {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
                Text(
-                'douda',
+                'your_covid19_tracker',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 25.0,
@@ -66,7 +67,7 @@ SliverToBoxAdapter _buildHeader(double screenHeight, context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Are you feeling sick?',
+                LocaleKeys.are_you_feeling_sick.tr()+'?',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 22.0,
@@ -75,7 +76,7 @@ SliverToBoxAdapter _buildHeader(double screenHeight, context) {
               ),
               SizedBox(height: screenHeight * 0.01),
               Text(
-                'If you feel sick with any COVID-19 symptoms, please ask immediately for help',
+                LocaleKeys.if_you_feel_sick.tr(),
                 style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 15.0,
@@ -91,11 +92,11 @@ SliverToBoxAdapter _buildHeader(double screenHeight, context) {
                       vertical: 10.0,
                       horizontal: 20.0,
                     ),
-                    onPressed: (){
+                    onPressed: ()  {
                        print("click me");
                       const tel ='tel:190';
-                       //launch(tel);
-                       context.locale = Locale('ar');
+                       launch(tel);
+                       //await context.setLocale(Locale('en'));
                        },
                     color: Colors.red,
                     shape: RoundedRectangleBorder(
@@ -129,7 +130,7 @@ SliverToBoxAdapter _buildPreventionTips(double screenHeight) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Prevention Tips',
+            LocaleKeys.prevention_tips.tr(),
             style: const TextStyle(
               fontSize: 22.0,
               fontWeight: FontWeight.w600,
@@ -194,7 +195,7 @@ SliverToBoxAdapter _buildPreventionTips(double screenHeight) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Let’s Go Get Our Vaccine!',
+                    LocaleKeys.lets_get_vaccine.tr()+'!',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 17.0,
@@ -203,7 +204,7 @@ SliverToBoxAdapter _buildPreventionTips(double screenHeight) {
                   ),
                   SizedBox(height: screenHeight * 0.01),
                   Text(
-                    'protect yourself \nand your loved ones. ',
+                    LocaleKeys.protect_yourself.tr()+'\n'+LocaleKeys.and_your_loved_ones.tr(),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15.0,

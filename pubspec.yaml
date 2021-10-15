@@ -25,21 +25,31 @@ dependencies:
     sdk: flutter
   http: ^0.13.3
   bubble_tab_indicator: ^0.1.6
-  fl_chart: ^0.36.3
   url_launcher: ^6.0.9
   flutter_bloc: ^7.2.0
   flutter_web_browser: "^0.15.0"
   intl: ^0.17.0
   easy_localization: ^3.0.0
+  fl_chart: ^0.40.0
   onesignal_flutter: ^3.2.3
+ 
+  
+ 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+# flutter_native_splash:
+#   color: "#32b3a4"
+#   image: assets/images/launch_image.jpg
+#   android: true
+#   ios: true  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

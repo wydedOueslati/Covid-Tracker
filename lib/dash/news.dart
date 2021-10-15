@@ -4,7 +4,9 @@ import 'package:covid19_news/blocs/newsbloc/news_states.dart';
 import 'package:covid19_news/config/colors.dart';
 import 'package:covid19_news/dash/newsui.dart';
 import 'package:covid19_news/repositories/news_repository.dart';
+import 'package:covid19_news/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewsPage extends StatefulWidget {
@@ -49,7 +51,7 @@ Widget _buildHeader() {
   return Container(
     padding: const EdgeInsets.all(20.0),
     child: Text(
-      'News',
+      LocaleKeys.news.tr(),
       style: const TextStyle(
         color: Colors.white,
         fontSize: 25.0,
