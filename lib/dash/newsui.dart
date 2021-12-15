@@ -34,7 +34,7 @@ class _NewsuiScreenState extends State<NewsuiScreen> {
         onCreate: (Database db, int version) async {
       // When creating the db, create the table
       await db.execute(
-          '''CREATE TABLE favorites (ID INTEGER PRIMARY KEY,title TEXT, image TEXT,source TEXT)''');
+          '''CREATE TABLE favorites (ID INTEGER PRIMARY KEY,title TEXT, image TEXT,source TEXT, url TEXT)''');
     });
   }
 
@@ -269,27 +269,29 @@ class CustomSearchDelegate extends SearchDelegate {
   CustomSearchDelegate(this.searchItems) {
     searchItems = this.searchItems;
   }
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () {
-            query = '';
-          })
-    ];
-  }
+  // @override
+  // List<Widget>? buildActions(BuildContext context) {
+  //   return [
+  //     Container(
+  //       child: IconButton(
+  //           icon: const Icon(Icons.clear),
+  //           onPressed: () {
+  //             query = '';
+  //           }),
+  //     )
+  //   ];
+  // }
 
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, null);
-        //
-      },
-    );
-  }
+  // @override
+  // Widget? buildLeading(BuildContext context) {
+  //   return IconButton(
+  //     icon: const Icon(Icons.arrow_back),
+  //     onPressed: () {
+  //       close(context, null);
+  //       //
+  //     },
+  //   );
+  // }
 
   @override
   Widget buildResults(BuildContext context) {
@@ -335,6 +337,32 @@ class CustomSearchDelegate extends SearchDelegate {
             Divider(),
           ],
         );
+      },
+    );
+  }
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    // TODO: implement buildActions
+    return [
+      Container(
+        child: IconButton(
+            icon: const Icon(Icons.clear),
+            onPressed: () {
+              query = '';
+            }),
+      )
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    // TODO: implement buildLeading
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+        //
       },
     );
   }

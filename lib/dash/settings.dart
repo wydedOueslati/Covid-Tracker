@@ -1,3 +1,4 @@
+import 'package:covid19_news/dash/favoritescreen.dart';
 import 'package:covid19_news/services/auth.dart';
 import 'package:covid19_news/translations/locale_keys.g.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -206,8 +207,13 @@ class _SettingsPageState extends State<SettingsPage> {
                            height: 16,
                         ),
                         GestureDetector(
-                        onTap: ()async {
-                        
+                        onTap: () {
+                        Navigator.push(
+                          context,
+                           MaterialPageRoute(
+                               builder: (context) => favoriteScreen()),
+                        );
+                        // .then((value) => setState(() {}));
                           },
                         child: SizedBox(
                         child: settingItem(LocaleKeys.saved_news.tr(),
