@@ -8,15 +8,16 @@ class ArticleModel {
   String? publishedAt;
   String? content;
 
-  ArticleModel(
-      {this.source,
-      this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.publishedAt,
-      this.content});
+  ArticleModel({
+    this.source,
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
+  });
 
   ArticleModel.fromJson(Map<String, dynamic> json) {
     source =

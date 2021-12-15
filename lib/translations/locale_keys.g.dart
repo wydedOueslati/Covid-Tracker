@@ -1,12 +1,12 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const douda = 'douda';
   static const call = 'call';
   static const your_covid19_tracker = 'your_covid19_tracker';
   static const are_you_feeling_sick = 'are_you_feeling_sick';
   static const if_you_feel_sick = 'if_you_feel_sick';
-  static const prevention_tips  = 'prevention_tips ';
+  static const prevention_tips = 'prevention_tips ';
   static const protect_yourself = 'protect_yourself';
   static const and_your_loved_ones = 'and_your_loved_ones';
   static const statistics = 'statistics';
@@ -49,5 +49,4 @@ abstract class  LocaleKeys {
   static const saved_news = 'saved_news';
   static const change_password = 'change_password';
   static const logout = 'logout';
-
 }

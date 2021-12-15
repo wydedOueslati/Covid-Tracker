@@ -21,29 +21,30 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Container(
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: 500.0,
-              decoration: BoxDecoration(
+        child: Column(children: [
+          Container(
+            width: 500.0,
+            decoration: BoxDecoration(
               color: colorPrimary,
               borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(40.0),
-              bottomRight: Radius.circular(40.0),
+                bottomLeft: Radius.circular(40.0),
+                bottomRight: Radius.circular(40.0),
               ),
-              ),
-              child: Center(child: _buildHeader()),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            Container(
-              child: BlocProvider<NewsBloc>(
+            child: Center(child: _buildHeader()),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          Container(
+            child: BlocProvider<NewsBloc>(
               create: (context) => NewsBloc(
-                initialState: NewsInitState(), newsRepositoty: NewsRepository()),
-                child:NewsuiScreen(),
-        ),
+                  initialState: NewsInitState(),
+                  newsRepositoty: NewsRepository()),
+              child: NewsuiScreen(),
             ),
-            ]
-    )));
+          ),
+        ]),
+      ),
+    );
   }
 }
 
