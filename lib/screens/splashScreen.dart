@@ -6,25 +6,21 @@ import 'package:flutter/material.dart';
 import 'homescreen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({ Key? key }) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 9),
-            ()=>Navigator.pushReplacement(context,
-            MaterialPageRoute(builder:
-                (context) =>
-                    Homescreen()
-            )
-        )
-    );
+    Timer(
+        Duration(seconds: 9),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Homescreen())));
   }
 
   @override
@@ -35,11 +31,12 @@ class _SplashScreenState extends State<SplashScreen> {
         height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-
-            colors: [Colors.white,Colors.white,]
-          ),
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.white,
+                Colors.white,
+              ]),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +49,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   height: 300.0,
                   width: 300.0,
                 ),
-                Text("Covid-19 Tracker",textAlign:TextAlign.center,
+                Text(
+                  "Covid-19 Tracker",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -61,9 +60,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ],
             ),
-
-            CircularProgressIndicator( 
-              valueColor:  AlwaysStoppedAnimation<Color>(Colors.white),
+            CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
           ],
         ),

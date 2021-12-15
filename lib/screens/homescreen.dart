@@ -36,9 +36,13 @@ class _HomescreenState extends State<Homescreen> {
         backgroundColor: colorPrimary,
         automaticallyImplyLeading: false,
         actions: [
-          IconButton( icon: Icon(Icons.privacy_tip_outlined),onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Helpful_info()));
-          },)
+          IconButton(
+            icon: Icon(Icons.privacy_tip_outlined),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Helpful_info()));
+            },
+          )
         ],
       ),
       body: pages[indexpage],

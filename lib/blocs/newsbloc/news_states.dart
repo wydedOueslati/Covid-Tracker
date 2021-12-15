@@ -15,10 +15,16 @@ class NewsLoadingState extends NewsStates {}
 
 class NewsLoadedState extends NewsStates {
   final List<ArticleModel> articleList;
-  NewsLoadedState({required this.articleList});
+  List<bool> isFav;
+
+  NewsLoadedState({required this.articleList, required this.isFav});
 }
 
 class NewsErrorState extends NewsStates {
   final String errorMessage;
   NewsErrorState({required this.errorMessage});
 }
+
+// class ChangeFav extends NewsStates {
+//   ChangeFav({required this.favIcon});
+// }
