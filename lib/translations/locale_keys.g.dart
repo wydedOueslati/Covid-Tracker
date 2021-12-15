@@ -45,5 +45,9 @@ abstract class  LocaleKeys {
   static const english = 'english';
   static const arabic = 'arabic';
   static const notification = 'notification';
+  static const account = 'account';
+  static const saved_news = 'saved_news';
+  static const change_password = 'change_password';
+  static const logout = 'logout';
 
 }

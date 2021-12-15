@@ -1,13 +1,22 @@
 import 'package:covid19_news/screens/helpful_info.dart';
 import 'package:covid19_news/screens/homescreen.dart';
 import 'package:covid19_news/screens/splashScreen.dart';
+import 'package:covid19_news/screens/wrapper.dart';
+import 'package:covid19_news/services/auth.dart';
 import 'package:covid19_news/translations/codegen_loader.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:provider/provider.dart';
+
+
+import 'models/myuser.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
         supportedLocales: [Locale('en'), Locale('ar')],
@@ -38,13 +47,17 @@ Future<void> initOnesignal() async {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      title: 'Covid 19 news app',
-      debugShowCheckedModeBanner: false,
-      home:Homescreen(),
+    return StreamProvider<MyUser?>.value(
+      value: AuthService().user,
+      initialData: null,
+      child: MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        title: 'Covid 19 news app',
+        debugShowCheckedModeBanner: false,
+        home:Wrapper(),
+      ),
     );
   }
 }

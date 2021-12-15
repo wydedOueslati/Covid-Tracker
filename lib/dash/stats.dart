@@ -264,6 +264,7 @@ Widget _buildStatsTabBar() {
 
             }else if (index==1 && locIndex==1)
             {
+              print("hooo");
               setState(() {
                 dateIndex=1;
                 myFuture = getdata("https://corona.lmao.ninja/v2/all");

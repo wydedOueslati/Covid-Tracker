@@ -58,7 +58,11 @@ class CodegenLoader extends AssetLoader{
   "language": "اللغة",
   "english": "الاقلزية",
   "arabic": "العربية  ",
-  "notification": "الاشعارات "
+  "notification": "الاشعارات ",
+  "account": "الحساب الخاص ",
+  "saved_news": "الأخبار المسجلة ",
+  "change_password": "تغير كلمة المرور ",
+  "logout": "خروج"
 };
 static const Map<String,dynamic> en = {
   "douda": "douda",
@@ -104,7 +108,11 @@ static const Map<String,dynamic> en = {
   "language": "Language",
   "english": "English",
   "arabic": "Arabic",
-  "notification": "Notification"
+  "notification": "Notification",
+  "account": "Account",
+  "saved_news": "Saved News",
+  "change_password": "Change Password",
+  "logout": "Logout"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
