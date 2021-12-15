@@ -42,5 +42,9 @@
   "language": "Language",
   "english": "English",
   "arabic": "Arabic",
-  "notification": "Notification"
+  "notification": "Notification",
+  "account": "Account",
+  "saved_news": "Saved News",
+  "change_password": "Change Password",
+  "logout": "Logout"
 }

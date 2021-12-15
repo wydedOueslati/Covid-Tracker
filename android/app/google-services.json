@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "991821342504",
+    "project_id": "covid-19-tracker-22e6d",
+    "storage_bucket": "covid-19-tracker-22e6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991821342504:android:0d272373772c399e58121d",
+        "android_client_info": {
+          "package_name": "com.wided.covid19_news"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991821342504-7jld060rh8ui47dodkdm5a3tc456vmsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaYqFJwgzgMDJBFmkBTxtLzVa0mcm2SAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991821342504-7jld060rh8ui47dodkdm5a3tc456vmsu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

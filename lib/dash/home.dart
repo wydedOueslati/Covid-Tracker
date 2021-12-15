@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:covid19_news/config/colors.dart';
 import 'package:covid19_news/config/styles.dart';
 import 'package:covid19_news/data/data.dart';
 import 'package:covid19_news/translations/locale_keys.g.dart';
 import 'package:covid19_news/utils/dropdown.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+
+
 
 
 
@@ -219,3 +222,5 @@ SliverToBoxAdapter _buildPreventionTips(double screenHeight) {
       ),
     );
   }
+
+ 

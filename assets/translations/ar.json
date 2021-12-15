@@ -42,5 +42,9 @@
   "language": "اللغة",
   "english": "الاقلزية",
   "arabic": "العربية  ",
-  "notification": "الاشعارات "
+  "notification": "الاشعارات ",
+  "account": "الحساب الخاص ",
+  "saved_news": "الأخبار المسجلة ",
+  "change_password": "تغير كلمة المرور ",
+  "logout": "خروج"
 }
